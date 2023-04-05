@@ -14,47 +14,41 @@ public class UsineDePiece {
 
     public static final int CYCLIC =2;
 
-    int mode;
+    static int mode;
+
+    static int count=0;
 
     private UsineDePiece() {
-        this.mode = ALEATOIRE_PIECE;
+        mode = ALEATOIRE_PIECE;
     }
 
-    public void setMode(int m){
+    public static void setMode(int m){
         if (m ==0){
-            this.mode =ALEATOIRE_COMPLET ;
+            mode =ALEATOIRE_COMPLET ;
         }
         if (m==1){
-            this.mode = ALEATOIRE_PIECE;
+            mode = ALEATOIRE_PIECE;
         }
         if (m==2){
-            this.mode = CYCLIC;
+            mode = CYCLIC;
         }
     }
 
-    public Piece genererPiece(){
-        int count=0;
-        if(this.mode==CYCLIC){
+    public static Piece genererPiece(){
+
+        if(mode==CYCLIC){
             if (count ==0){
+                count=1;
                 return new OPiece(new Coordonnees(2,3),Couleur.ROUGE);
             }
             if(count ==1){
                 count =0;
                 return new IPiece(new Coordonnees(2,3),Couleur.ORANGE);
             }
+        }
 
-        }
-        if(this.mode==ALEATOIRE_PIECE){
-            Random rand = new Random();
-            int a =  rand.nextInt(2);
-            if (a==0){
-                return new OPiece(new Coordonnees(2,3),Couleur.ROUGE);
-            }
-            if(a==1){
-                return new IPiece(new Coordonnees(2,3),Couleur.ORANGE);
-            }
-        }
-        if(this.mode == ALEATOIRE_COMPLET){
+
+        if(mode == ALEATOIRE_COMPLET){
             Random rand = new Random();
             int b =  rand.nextInt(2);
             if (b==0){
@@ -62,6 +56,17 @@ public class UsineDePiece {
             }
             if(b==1){
                 return new IPiece(new Coordonnees(2,3),Couleur.values()[rand.nextInt(7)]);
+            }
+        }
+
+        else{
+            Random rand = new Random();
+            int a =  rand.nextInt(2);
+            if (a==0){
+                return new OPiece(new Coordonnees(2,3),Couleur.ROUGE);
+            }
+            if(a==1){
+                return new IPiece(new Coordonnees(2,3),Couleur.ORANGE);
             }
         }
         return null;
