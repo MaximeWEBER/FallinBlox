@@ -1,12 +1,22 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
-public enum Couleur {
+import java.awt.*;
 
-    ROUGE,
-    ORANGE,
-    BLEU,
-    VERT,
-    JAUNE,
-    CYAN,
-    VIOLET
+public enum Couleur {
+    ROUGE(java.awt.Color.RED),
+    ORANGE(java.awt.Color.ORANGE),
+    BLEU(java.awt.Color.BLUE),
+    VERT(java.awt.Color.GREEN),
+    JAUNE(java.awt.Color.YELLOW),
+    CYAN(java.awt.Color.CYAN),
+    VIOLET(java.awt.Color.MAGENTA);
+
+    private final java.awt.Color couleurPourAffichage;
+    private Couleur(java.awt.Color couleurPourAffichage) {
+        this.couleurPourAffichage=couleurPourAffichage;
+    }
+
+    public Color getCouleurPourAffichage() {
+        return couleurPourAffichage;
+    }
 }

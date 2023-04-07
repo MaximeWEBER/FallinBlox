@@ -23,15 +23,7 @@ public class UsineDePiece {
     }
 
     public static void setMode(int m){
-        if (m ==0){
-            mode =ALEATOIRE_COMPLET ;
-        }
-        if (m==1){
-            mode = ALEATOIRE_PIECE;
-        }
-        if (m==2){
-            mode = CYCLIC;
-        }
+        mode = m;
     }
 
     public static Piece genererPiece(){
@@ -48,7 +40,7 @@ public class UsineDePiece {
         }
 
 
-        if(mode == ALEATOIRE_COMPLET){
+        else if(mode == ALEATOIRE_COMPLET){
             Random rand = new Random();
             int b =  rand.nextInt(2);
             if (b==0){

@@ -2,6 +2,7 @@ package fr.eseo.e3.poo.projet.blox.modele.pieces;
 
 import fr.eseo.e3.poo.projet.blox.modele.Coordonnees;
 import fr.eseo.e3.poo.projet.blox.modele.Couleur;
+import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.OPiece;
 import org.junit.jupiter.api.Test;
 
@@ -65,5 +66,14 @@ public class OPieceTest {
         assertEquals(7, opiece.getElements().get(3).getCoordonnees().getOrdonnee());
     }
 
+    @Test
+    public void puitsTest(){
+        Coordonnees coo1 = new Coordonnees(3,12);
+        Couleur couleur = Couleur.ROUGE;
+        OPiece opiece = new OPiece(coo1,couleur);
 
+        Puits puits = new Puits();
+        opiece.setPuits(puits);
+        assertEquals(puits, opiece.getPuits());
+    }
 }
