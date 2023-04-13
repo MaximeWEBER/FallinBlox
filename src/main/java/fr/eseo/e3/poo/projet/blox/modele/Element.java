@@ -61,4 +61,9 @@ public class Element {
     public int hashCode() {
         return Objects.hash(coordonnees, couleur);
     }
+
+    public void deplacerDe(int deltaX, int deltaY){
+        this.coordonnees.setAbscisse(this.coordonnees.getAbscisse()+deltaX);
+        this.coordonnees.setOrdonnee(this.coordonnees.getOrdonnee()+deltaY);
+    }
 }

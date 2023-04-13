@@ -1,22 +1,33 @@
 package fr.eseo.e3.poo.projet.blox.vue;
 
+import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacement;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
+import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.util.Objects;
 
-public class VuePuits extends JPanel {
+public class VuePuits extends JPanel implements java.beans.PropertyChangeListener  {
     public static final int TAILLE_PAR_DEFAUT =10;
 
     private Puits puits;
 
     private int taille;
 
+    private VuePiece vuePiece;
+
+    private PieceDeplacement pieceDeplacement;
+
+
     public VuePuits(Puits p1){
         this.puits = p1;
         this.taille=TAILLE_PAR_DEFAUT;
         this.setPreferredSize(new Dimension(puits.getLargeur()*TAILLE_PAR_DEFAUT,puits.getProfondeur()*TAILLE_PAR_DEFAUT));
         this.setBackground(Color.WHITE);
+        p1.addPropertyChangeListener(this);
+        addMouseMotionListener(new PieceDeplacement(this));
     }
 
     public VuePuits(Puits p1, int taille){
@@ -24,6 +35,8 @@ public class VuePuits extends JPanel {
         this.taille=taille;
         this.setPreferredSize(new Dimension(puits.getLargeur()*this.taille,puits.getProfondeur()*this.taille));
         this.setBackground(Color.WHITE);
+        p1.addPropertyChangeListener(this);
+        addMouseMotionListener(new PieceDeplacement(this));
     }
 
     public Puits getPuits() {
@@ -33,6 +46,14 @@ public class VuePuits extends JPanel {
     public void setPuits(Puits p1) {
         this.puits = p1;
         this.setPreferredSize(new Dimension(puits.getLargeur()*this.taille,puits.getProfondeur()*this.taille));
+    }
+
+    public VuePiece getVuePiece() {
+        return vuePiece;
+    }
+
+    private void setVuePiece(VuePiece vuePiece) {
+        this.vuePiece = vuePiece;
     }
 
     public int getTaille() {
@@ -63,12 +84,19 @@ public class VuePuits extends JPanel {
             g2D.drawLine(i*this.taille,0,i*this.taille,getPuits().getProfondeur()*this.taille);
         }
 
-
-
-
         /* Nous utiliserons l'instance de Graphics2D*/
         /*Puis nous liberons la memoire*/
-
+        if (vuePiece != null) {
+            vuePiece.afficherPiece(g2D);
+        }
         g2D.dispose();
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if(Objects.equals(evt.getPropertyName(), Puits.MODIFICATION_PIECE_SUIVANTE)){
+            setVuePiece(new VuePiece((Piece) evt.getNewValue(),getTaille()));
+        }
     }
 }

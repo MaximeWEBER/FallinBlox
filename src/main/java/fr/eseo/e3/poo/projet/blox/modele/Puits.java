@@ -8,6 +8,12 @@ public class Puits {
 
     public static final int PROFONDEUR_PAR_DEFAUT=20;
 
+    public static final String MODIFICATION_PIECE_ACTUELLE = "ACTUELLE";
+
+    public static final String MODIFICATION_PIECE_SUIVANTE = "SUIVANTE";
+
+    private java.beans.PropertyChangeSupport pcs;
+
     private int largeur;
 
     private int profondeur;
@@ -18,11 +24,13 @@ public class Puits {
     public Puits() {
         setProfondeur(PROFONDEUR_PAR_DEFAUT);
         setLargeur(LARGEUR_PAR_DEFAUT);
+        this.pcs = new java.beans.PropertyChangeSupport(this);
     }
 
     public Puits(int largeur, int profondeur) {
         setProfondeur(profondeur);
         setLargeur(largeur);
+        this.pcs = new java.beans.PropertyChangeSupport(this);
     }
 
     public int getLargeur() {
@@ -46,7 +54,10 @@ public class Puits {
             pieceActuelle = pieceSuivante;
             pieceActuelle.setPosition(this.largeur/2,-4);
         }
+        pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE,pieceSuivante,piece);
         pieceSuivante = piece;
+
+
     }
 
     public void setLargeur(int largeur) throws IllegalArgumentException{
@@ -77,4 +88,13 @@ public class Puits {
         }
         return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "+ pieceActuelle.toString()+"Piece Suivante : " + pieceSuivante.toString();
     }
+
+    public void addPropertyChangeListener(java.beans.PropertyChangeListener listener){
+        pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(java.beans.PropertyChangeListener listener){
+        pcs.removePropertyChangeListener(listener);
+    }
+
 }

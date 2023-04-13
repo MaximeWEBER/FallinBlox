@@ -19,5 +19,14 @@ public class OPiece extends Piece{
         this.getElements().add(new Element(new Coordonnees(coordonnees.getAbscisse()+1,coordonnees.getOrdonnee()),couleur));
         this.getElements().add(new Element(new Coordonnees(coordonnees.getAbscisse()+1,coordonnees.getOrdonnee()-1),couleur));
     }
+    @Override
+    public void tourner(boolean sensHoraire){
+        if(sensHoraire){
+
+        }
+        else{
+
+        }
+    }
 
 }
