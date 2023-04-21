@@ -1,6 +1,7 @@
 package fr.eseo.e3.poo.projet.blox.vue;
 
 import fr.eseo.e3.poo.projet.blox.controleur.PieceDeplacement;
+import fr.eseo.e3.poo.projet.blox.controleur.PieceRotation;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
@@ -10,7 +11,7 @@ import java.beans.PropertyChangeEvent;
 import java.util.Objects;
 
 public class VuePuits extends JPanel implements java.beans.PropertyChangeListener  {
-    public static final int TAILLE_PAR_DEFAUT =10;
+    public static final int TAILLE_PAR_DEFAUT =15;
 
     private Puits puits;
 
@@ -20,14 +21,21 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
 
     private PieceDeplacement pieceDeplacement;
 
+    private PieceRotation pieceRotation;
+
 
     public VuePuits(Puits p1){
         this.puits = p1;
         this.taille=TAILLE_PAR_DEFAUT;
         this.setPreferredSize(new Dimension(puits.getLargeur()*TAILLE_PAR_DEFAUT,puits.getProfondeur()*TAILLE_PAR_DEFAUT));
         this.setBackground(Color.WHITE);
-        p1.addPropertyChangeListener(this);
-        addMouseMotionListener(new PieceDeplacement(this));
+        puits.addPropertyChangeListener(this);
+        this.pieceDeplacement = new PieceDeplacement(this);
+        addMouseMotionListener(this.pieceDeplacement);
+        addMouseListener(this.pieceDeplacement);
+        addMouseWheelListener(this.pieceDeplacement);
+        this.pieceRotation = new PieceRotation(this);
+        addMouseListener(this.pieceRotation);
     }
 
     public VuePuits(Puits p1, int taille){
@@ -35,8 +43,14 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
         this.taille=taille;
         this.setPreferredSize(new Dimension(puits.getLargeur()*this.taille,puits.getProfondeur()*this.taille));
         this.setBackground(Color.WHITE);
-        p1.addPropertyChangeListener(this);
-        addMouseMotionListener(new PieceDeplacement(this));
+        puits.addPropertyChangeListener(this);
+        this.pieceDeplacement = new PieceDeplacement(this);
+        addMouseMotionListener(this.pieceDeplacement);
+        addMouseListener(this.pieceDeplacement);
+        addMouseWheelListener(this.pieceDeplacement);
+        this.pieceRotation = new PieceRotation(this);
+        addMouseListener(this.pieceRotation);
+
     }
 
     public Puits getPuits() {
@@ -46,6 +60,7 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
     public void setPuits(Puits p1) {
         this.puits = p1;
         this.setPreferredSize(new Dimension(puits.getLargeur()*this.taille,puits.getProfondeur()*this.taille));
+        this.puits.addPropertyChangeListener(this);
     }
 
     public VuePiece getVuePiece() {
@@ -63,6 +78,7 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
     public void setTaille(int taille) {
         this.taille = taille;
         this.setPreferredSize(new Dimension(puits.getLargeur()*this.taille,puits.getProfondeur()*this.taille));
+        this.puits.addPropertyChangeListener(this);
     }
 
     @Override
@@ -95,7 +111,7 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(Objects.equals(evt.getPropertyName(), Puits.MODIFICATION_PIECE_SUIVANTE)){
+        if(Objects.equals(evt.getPropertyName(), Puits.MODIFICATION_PIECE_ACTUELLE)){
             setVuePiece(new VuePiece((Piece) evt.getNewValue(),getTaille()));
         }
     }

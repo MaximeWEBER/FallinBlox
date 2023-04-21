@@ -2,8 +2,6 @@ package fr.eseo.e3.poo.projet.blox.vue;
 
 import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 
-import java.awt.*;
-
 public class VuePiece {
 
     public static final double MULTIPLIER_TEINTE=0.5;

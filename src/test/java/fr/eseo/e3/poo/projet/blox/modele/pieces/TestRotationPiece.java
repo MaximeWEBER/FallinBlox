@@ -1,5 +1,6 @@
 package fr.eseo.e3.poo.projet.blox.modele.pieces;
 
+import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Coordonnees;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
@@ -18,16 +19,21 @@ public class TestRotationPiece {
         puits.setPieceSuivante(UsineDePiece.genererPiece());
         puits.setPieceSuivante(UsineDePiece.genererPiece());
 
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
-        puits.getPieceActuelle().deplacerDe(0,1);
+        try {
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+            puits.getPieceActuelle().deplacerDe(0,1);
+        } catch (BloxException e) {
+            throw new RuntimeException(e);
+        }
+
 
 
         assertEquals(6,puits.getPieceActuelle().getElements().get(1).getCoordonnees().getAbscisse());
@@ -39,8 +45,13 @@ public class TestRotationPiece {
         assertEquals(7,puits.getPieceActuelle().getElements().get(3).getCoordonnees().getAbscisse());
         assertEquals(6,puits.getPieceActuelle().getElements().get(3).getCoordonnees().getOrdonnee());
         //
-        puits.getPieceActuelle().tourner(false);
-        puits.getPieceActuelle().tourner(false);
+        try {
+            puits.getPieceActuelle().tourner(false);
+            puits.getPieceActuelle().tourner(false);
+        } catch (BloxException e) {
+            throw new RuntimeException(e);
+        }
+
 
         assertEquals(4,puits.getPieceActuelle().getElements().get(1).getCoordonnees().getAbscisse());
         assertEquals(6,puits.getPieceActuelle().getElements().get(1).getCoordonnees().getOrdonnee());

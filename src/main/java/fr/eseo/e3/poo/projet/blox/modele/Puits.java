@@ -21,16 +21,27 @@ public class Puits {
 
     private Piece pieceSuivante;
 
+    private Tas tas;
+
     public Puits() {
         setProfondeur(PROFONDEUR_PAR_DEFAUT);
         setLargeur(LARGEUR_PAR_DEFAUT);
         this.pcs = new java.beans.PropertyChangeSupport(this);
+        this.tas=new Tas(this);
     }
 
     public Puits(int largeur, int profondeur) {
         setProfondeur(profondeur);
         setLargeur(largeur);
         this.pcs = new java.beans.PropertyChangeSupport(this);
+        this.tas=new Tas(this);
+    }
+
+    public Puits(int largeur, int profondeur, int nbElements, int nbLignes) {
+        setProfondeur(profondeur);
+        setLargeur(largeur);
+        this.pcs = new java.beans.PropertyChangeSupport(this);
+        this.tas= new Tas(this,nbElements, nbLignes);
     }
 
     public int getLargeur() {
@@ -45,17 +56,21 @@ public class Puits {
         return pieceActuelle;
     }
 
+
     public Piece getPieceSuivante() {
         return pieceSuivante;
     }
 
     public void setPieceSuivante(Piece piece) {
+        Piece pieceActuelleBackup = this.pieceActuelle;
+        Piece pieceSuivanteBackup = this.pieceSuivante;
         if (pieceSuivante!=null){
             pieceActuelle = pieceSuivante;
             pieceActuelle.setPosition(this.largeur/2,-4);
+            pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE,pieceActuelleBackup,pieceActuelle);
         }
-        pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE,pieceSuivante,piece);
         pieceSuivante = piece;
+        pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE,pieceSuivanteBackup,pieceSuivante);
 
 
     }
@@ -87,6 +102,14 @@ public class Puits {
             return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "+"<"+a+">"+"\n" +"Piece Suivante : "+ pieceSuivante.toString();
         }
         return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "+ pieceActuelle.toString()+"Piece Suivante : " + pieceSuivante.toString();
+    }
+
+    public Tas getTas() {
+        return tas;
+    }
+
+    public void setTas(Tas tas) {
+        this.tas = tas;
     }
 
     public void addPropertyChangeListener(java.beans.PropertyChangeListener listener){

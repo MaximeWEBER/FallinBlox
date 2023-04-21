@@ -1,6 +1,6 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
-import java.awt.*;
+import java.awt.Color;
 
 public enum Couleur {
     ROUGE(java.awt.Color.RED),
