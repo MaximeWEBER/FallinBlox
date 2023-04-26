@@ -8,9 +8,10 @@ import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Objects;
 
-public class VuePuits extends JPanel implements java.beans.PropertyChangeListener  {
+public class VuePuits extends JPanel implements PropertyChangeListener  {
     public static final int TAILLE_PAR_DEFAUT =15;
 
     private Puits puits;
@@ -22,6 +23,8 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
     private PieceDeplacement pieceDeplacement;
 
     private PieceRotation pieceRotation;
+
+    private final VueTas vueTas;
 
 
     public VuePuits(Puits p1){
@@ -36,6 +39,8 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
         addMouseWheelListener(this.pieceDeplacement);
         this.pieceRotation = new PieceRotation(this);
         addMouseListener(this.pieceRotation);
+        this.vueTas = new VueTas(this);
+        //Gravite gravite = new Gravite(this);
     }
 
     public VuePuits(Puits p1, int taille){
@@ -50,8 +55,10 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
         addMouseWheelListener(this.pieceDeplacement);
         this.pieceRotation = new PieceRotation(this);
         addMouseListener(this.pieceRotation);
-
+        this.vueTas = new VueTas(this);
+        //Gravite gravite = new Gravite(this);
     }
+
 
     public Puits getPuits() {
         return puits;
@@ -89,7 +96,7 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
         /*Le paramètre g est copie en utilisant la méthode copie()
         * puis converti en instance de Graphics2D grâce à
         * un transtypage (cast) explicite.*/
-        g.setColor(Color.WHITE);
+
         Graphics2D g2D = (Graphics2D)g.create();
         g2D.setColor(Color.LIGHT_GRAY);
         for (int i=0; i<(getPuits().getProfondeur());i++){
@@ -105,6 +112,10 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
         if (vuePiece != null) {
             vuePiece.afficherPiece(g2D);
         }
+        if(vueTas != null){
+            vueTas.afficher(g2D);
+        }
+
         g2D.dispose();
 
     }
@@ -115,4 +126,10 @@ public class VuePuits extends JPanel implements java.beans.PropertyChangeListene
             setVuePiece(new VuePiece((Piece) evt.getNewValue(),getTaille()));
         }
     }
+
+    public VueTas getVueTas() {
+        return vueTas;
+    }
+
+
 }

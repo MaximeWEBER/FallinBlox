@@ -1,5 +1,7 @@
 package fr.eseo.e3.poo.projet.blox.modele;
 
+import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
+
 import java.util.Random;
 
 public class Tas {
@@ -57,5 +59,12 @@ public class Tas {
                 }
             }
         }
+    }
+
+    public void ajouterElements(Piece piece) {
+        elements[piece.getElements().get(0).getCoordonnees().getOrdonnee()][piece.getElements().get(0).getCoordonnees().getAbscisse()] = new Element(new Coordonnees(piece.getElements().get(0).getCoordonnees().getAbscisse(), piece.getElements().get(0).getCoordonnees().getOrdonnee()),piece.getElements().get(0).getCouleur());
+        elements[piece.getElements().get(1).getCoordonnees().getOrdonnee()][piece.getElements().get(1).getCoordonnees().getAbscisse()] = new Element(new Coordonnees(piece.getElements().get(1).getCoordonnees().getAbscisse(), piece.getElements().get(1).getCoordonnees().getOrdonnee()),piece.getElements().get(0).getCouleur());
+        elements[piece.getElements().get(2).getCoordonnees().getOrdonnee()][piece.getElements().get(2).getCoordonnees().getAbscisse()] = new Element(new Coordonnees(piece.getElements().get(2).getCoordonnees().getAbscisse(), piece.getElements().get(2).getCoordonnees().getOrdonnee()),piece.getElements().get(0).getCouleur());
+        elements[piece.getElements().get(3).getCoordonnees().getOrdonnee()][piece.getElements().get(3).getCoordonnees().getAbscisse()] = new Element(new Coordonnees(piece.getElements().get(3).getCoordonnees().getAbscisse(), piece.getElements().get(3).getCoordonnees().getOrdonnee()),piece.getElements().get(0).getCouleur());
     }
 }

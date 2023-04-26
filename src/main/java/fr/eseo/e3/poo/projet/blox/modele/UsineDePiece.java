@@ -33,7 +33,7 @@ public class UsineDePiece {
                 count=1;
                 return new OPiece(new Coordonnees(2,3),Couleur.ROUGE);
             }
-            if(count ==1){
+            else if(count ==1){
                 count =0;
                 return new IPiece(new Coordonnees(2,3),Couleur.ORANGE);
             }
@@ -46,7 +46,7 @@ public class UsineDePiece {
             if (b==0){
                 return new OPiece(new Coordonnees(2,3),Couleur.values()[rand.nextInt(7)]);
             }
-            if(b==1){
+            else if(b==1){
                 return new IPiece(new Coordonnees(2,3),Couleur.values()[rand.nextInt(7)]);
             }
         }
@@ -57,7 +57,7 @@ public class UsineDePiece {
             if (a==0){
                 return new OPiece(new Coordonnees(2,3),Couleur.ROUGE);
             }
-            if(a==1){
+            else if(a==1){
                 return new IPiece(new Coordonnees(2,3),Couleur.ORANGE);
             }
         }

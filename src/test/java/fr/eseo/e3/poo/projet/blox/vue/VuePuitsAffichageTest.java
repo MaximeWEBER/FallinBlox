@@ -15,6 +15,7 @@ public class VuePuitsAffichageTest {
     public VuePuitsAffichageTest() {
         testConstructeurPuits();
         testConstructeurPuitsTaille();
+        //testVueTas();
     }
 
     private void testConstructeurPuits(){
@@ -41,6 +42,22 @@ public class VuePuitsAffichageTest {
         maFenetre.add(vuePuits,BorderLayout.CENTER);
         maFenetre.setLocationRelativeTo(null);
         UsineDePiece.setMode(2);
+        p1.setPieceSuivante(UsineDePiece.genererPiece());
+        p1.setPieceSuivante(UsineDePiece.genererPiece());
+        maFenetre.setSize(new Dimension(500,500));
+        maFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        maFenetre.pack();
+        maFenetre.setVisible(true);
+    }
+
+    private void testVueTas(){
+        JFrame maFenetre = new JFrame("Tas");
+        Puits p1 = new Puits();
+        JPanel vuePuits = new VuePuits(p1, 20);
+        maFenetre.add(vuePuits,BorderLayout.CENTER);
+        maFenetre.setLocationRelativeTo(null);
+        UsineDePiece.setMode(2);
+        p1.setPieceSuivante(UsineDePiece.genererPiece());
         p1.setPieceSuivante(UsineDePiece.genererPiece());
         p1.setPieceSuivante(UsineDePiece.genererPiece());
         maFenetre.setSize(new Dimension(500,500));

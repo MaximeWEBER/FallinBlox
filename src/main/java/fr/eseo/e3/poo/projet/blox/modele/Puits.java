@@ -68,6 +68,7 @@ public class Puits {
             pieceActuelle = pieceSuivante;
             pieceActuelle.setPosition(this.largeur/2,-4);
             pcs.firePropertyChange(MODIFICATION_PIECE_ACTUELLE,pieceActuelleBackup,pieceActuelle);
+            pieceActuelle.setPuits(this);
         }
         pieceSuivante = piece;
         pcs.firePropertyChange(MODIFICATION_PIECE_SUIVANTE,pieceSuivanteBackup,pieceSuivante);
@@ -120,4 +121,17 @@ public class Puits {
         pcs.removePropertyChangeListener(listener);
     }
 
+    private void gererCollision(){
+        tas.ajouterElements(getPieceActuelle());
+        setPieceSuivante(UsineDePiece.genererPiece());
+    }
+
+    public void gravite(){
+        try {
+            pieceActuelle.deplacerDe(0,1);
+        } catch (BloxException e) {
+            if (e.getType() == 0)
+                gererCollision();
+        }
+    }
 }

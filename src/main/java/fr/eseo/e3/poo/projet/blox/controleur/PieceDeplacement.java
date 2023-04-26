@@ -31,14 +31,45 @@ public class PieceDeplacement extends MouseAdapter implements java.awt.event.Mou
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        /*
         if (this.puits.getPieceActuelle() != null){
+            int precColonne = e.getX()/vuePuits.getTaille();
+            if (colonne!=-1) {
+                if (precColonne<(colonne)){
+                    try {
+                        puits.getPieceActuelle().deplacerDe(-1,0);
+                        vuePuits.repaint();
+                    } catch (BloxException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if (precColonne>(colonne)){
+
+                    try {
+                        puits.getPieceActuelle().deplacerDe(1,0);
+
+                        vuePuits.repaint();
+                    } catch (BloxException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                //this.puits.getPieceActuelle().setPosition(Math.floorDiv(colonne ,vuePuits.getTaille()),this.puits.getPieceActuelle().getElements().get(0).getCoordonnees().getOrdonnee());
+            }
+            colonne=precColonne;
+        }
+*/
+
+        if (this.puits.getPieceActuelle() != null){
+            // - 1 Changer en 0
             if (colonne==0) {
-                ligne = e.getY();
                 colonne = e.getX();
+                // ajout d'un set position si sortie d'écran
+                //this.puits.getPieceActuelle().setPosition(Math.floorDiv(colonne ,vuePuits.getTaille()),this.puits.getPieceActuelle().getElements().get(0).getCoordonnees().getOrdonnee());
             }
             else{
-
-                int precColonne = Math.floorDiv(colonne ,vuePuits.getTaille());
+                // Suppression Math.floorDiv
+                int precColonne = Math.floorDiv(colonne,vuePuits.getTaille());
+                // Les >= et <= ne sont pas logique
                 if (precColonne>=(e.getX()/ vuePuits.getTaille())){
                     colonne=e.getX();
                     try {
@@ -62,7 +93,11 @@ public class PieceDeplacement extends MouseAdapter implements java.awt.event.Mou
                 }
             }
         }
+
+
     }
+
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -82,7 +117,6 @@ public class PieceDeplacement extends MouseAdapter implements java.awt.event.Mou
     @Override
     public void mouseEntered(MouseEvent e) {
         colonne =-1;
-        vuePuits.repaint();
     }
 
     @Override

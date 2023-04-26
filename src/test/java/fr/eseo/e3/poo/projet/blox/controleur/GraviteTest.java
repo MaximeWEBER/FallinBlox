@@ -6,26 +6,26 @@ import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
 import fr.eseo.e3.poo.projet.blox.vue.PanneauInformation;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
-
 import javax.swing.*;
 import java.awt.*;
 
-public class PieceRotationTest {
+public class GraviteTest {
 
 
-    public PieceRotationTest() {
-        testPieceRotation();
+    public GraviteTest() {
+        testGravite();
     }
 
-    private void testPieceRotation(){
+    private void testGravite(){
         JFrame maFenetre = new JFrame("Puits");
         Puits p1 = new Puits();
-        JPanel vuePuits = new VuePuits(p1,20);
+        VuePuits vuePuits = new VuePuits(p1,20);
         JPanel vuePanneau = new PanneauInformation(p1);
+        Gravite gravite = new Gravite(vuePuits);
         UsineDePiece.setMode(2);
         p1.setPieceSuivante(UsineDePiece.genererPiece());
         p1.setPieceSuivante(UsineDePiece.genererPiece());
-
+        p1.setPieceSuivante(UsineDePiece.genererPiece());
 
         try {
             p1.getPieceActuelle().deplacerDe(0,1);
@@ -51,14 +51,12 @@ public class PieceRotationTest {
         maFenetre.setVisible(true);
     }
 
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable () {
             @Override
             public void run() {
-                new PieceRotationTest();
+                new GraviteTest();
             }
         });
     }
 }
-
