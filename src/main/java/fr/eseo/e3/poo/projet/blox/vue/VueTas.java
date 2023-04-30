@@ -1,10 +1,11 @@
 package fr.eseo.e3.poo.projet.blox.vue;
 
+import fr.eseo.e3.poo.projet.blox.modele.Element;
 import fr.eseo.e3.poo.projet.blox.modele.Tas;
 
 public class VueTas {
 
-    public static final double MULTIPLIER_NUANCE = 0.5;
+    public static final double MULTIPLIER_NUANCE = 0.4;
 
     private final VuePuits vuePuits;
 
@@ -44,6 +45,4 @@ public class VueTas {
         }
 
     }
-
-
 }

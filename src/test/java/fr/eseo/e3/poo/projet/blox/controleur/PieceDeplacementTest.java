@@ -3,13 +3,13 @@ package fr.eseo.e3.poo.projet.blox.controleur;
 import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
-import fr.eseo.e3.poo.projet.blox.modele.pieces.Piece;
-import fr.eseo.e3.poo.projet.blox.vue.VuePiece;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
-import fr.eseo.e3.poo.projet.blox.vue.VuePuitsAffichageTest;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 public class PieceDeplacementTest {
 

@@ -5,10 +5,11 @@ import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.modele.UsineDePiece;
 import fr.eseo.e3.poo.projet.blox.vue.PanneauInformation;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
-
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.SwingUtilities;
 
 public class PieceRotationTest {
 
@@ -25,8 +26,6 @@ public class PieceRotationTest {
         UsineDePiece.setMode(2);
         p1.setPieceSuivante(UsineDePiece.genererPiece());
         p1.setPieceSuivante(UsineDePiece.genererPiece());
-
-
         try {
             p1.getPieceActuelle().deplacerDe(0,1);
             p1.getPieceActuelle().deplacerDe(0,1);
@@ -39,9 +38,6 @@ public class PieceRotationTest {
         } catch (BloxException e) {
             throw new RuntimeException(e);
         }
-
-
-
         maFenetre.add(vuePuits, BorderLayout.CENTER);
         maFenetre.add(vuePanneau,BorderLayout.EAST);
         maFenetre.setLocationRelativeTo(null);

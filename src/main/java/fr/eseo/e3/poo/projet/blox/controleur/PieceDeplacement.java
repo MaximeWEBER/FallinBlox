@@ -2,7 +2,6 @@ package fr.eseo.e3.poo.projet.blox.controleur;
 
 import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
-import fr.eseo.e3.poo.projet.blox.vue.VuePiece;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
 import java.awt.event.MouseAdapter;
@@ -14,8 +13,6 @@ public class PieceDeplacement extends MouseAdapter implements java.awt.event.Mou
     private VuePuits vuePuits;
 
     private Puits puits;
-
-    int ligne=0;
 
     int colonne=0;
 
@@ -70,23 +67,23 @@ public class PieceDeplacement extends MouseAdapter implements java.awt.event.Mou
                 // Suppression Math.floorDiv
                 int precColonne = Math.floorDiv(colonne,vuePuits.getTaille());
                 // Les >= et <= ne sont pas logique
-                if (precColonne>=(e.getX()/ vuePuits.getTaille())){
+                if (precColonne>(e.getX()/ vuePuits.getTaille())){
                     colonne=e.getX();
                     try {
                         puits.getPieceActuelle().deplacerDe(-1,0);
                     } catch (BloxException ex) {
-                        throw new RuntimeException(ex);
+                        System.out.println("Impossible d'aller à gauche");
                     }
 
                     vuePuits.repaint();
                 }
-                if (precColonne<=(e.getX()/ vuePuits.getTaille())){
+                if (precColonne<(e.getX()/ vuePuits.getTaille())){
                     colonne=e.getX();
 
                     try {
                         puits.getPieceActuelle().deplacerDe(1,0);
                     } catch (BloxException ex) {
-                        throw new RuntimeException(ex);
+                        System.out.println("Impossible d'aller à droite");
                     }
 
                     vuePuits.repaint();
@@ -132,7 +129,7 @@ public class PieceDeplacement extends MouseAdapter implements java.awt.event.Mou
                 try {
                     puits.getPieceActuelle().deplacerDe(0,1);
                 } catch (BloxException ex) {
-                    throw new RuntimeException(ex);
+                    System.out.println("Collision bas puits / Collision tas");;
                 }
 
                 vuePuits.repaint();

@@ -3,7 +3,7 @@ package fr.eseo.e3.poo.projet.blox.controleur;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
-import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 
 public class Gravite implements java.awt.event.ActionListener{

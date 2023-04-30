@@ -21,12 +21,6 @@ public class OPiece extends Piece{
     }
     @Override
     public void tourner(boolean sensHoraire){
-        if(sensHoraire){
-
-        }
-        else{
-
-        }
     }
 
 }

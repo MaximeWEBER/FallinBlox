@@ -4,7 +4,7 @@ import fr.eseo.e3.poo.projet.blox.modele.BloxException;
 import fr.eseo.e3.poo.projet.blox.modele.Puits;
 import fr.eseo.e3.poo.projet.blox.vue.VuePuits;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -25,7 +25,7 @@ public class PieceRotation extends MouseAdapter {
             try {
                 vuePuits.getPuits().getPieceActuelle().tourner(true);
             } catch (BloxException ex) {
-                throw new RuntimeException(ex);
+                System.out.println("Impossible de tourner sens horaire");
             }
             vuePuits.repaint();
         }
@@ -33,7 +33,7 @@ public class PieceRotation extends MouseAdapter {
             try {
                 vuePuits.getPuits().getPieceActuelle().tourner(false);
             } catch (BloxException ex) {
-                throw new RuntimeException(ex);
+                System.out.println("Impossible de tourner sens anti horaire");
             }
             vuePuits.repaint();
         }

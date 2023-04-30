@@ -96,13 +96,16 @@ public class Puits {
     public String toString() {
         if (this.pieceActuelle == null && this.pieceSuivante == null){
             String c = "aucune";
-            return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "+"<"+c+">"+"\n" +"Piece Suivante : " +"<"+c+">"+"\n";
+            return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "
+                    +"<"+c+">"+"\n" +"Piece Suivante : " +"<"+c+">"+"\n";
         }
         if(this.pieceActuelle == null){
             String a = "aucune";
-            return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "+"<"+a+">"+"\n" +"Piece Suivante : "+ pieceSuivante.toString();
+            return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "+"<"+a+">"+"\n"
+                    +"Piece Suivante : "+ pieceSuivante.toString();
         }
-        return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "+ pieceActuelle.toString()+"Piece Suivante : " + pieceSuivante.toString();
+        return "Puits : Dimension "+this.largeur+" x "+this.profondeur+"\n"+"Piece Actuelle : "
+                + pieceActuelle.toString()+"Piece Suivante : " + pieceSuivante.toString();
     }
 
     public Tas getTas() {
@@ -134,4 +137,6 @@ public class Puits {
                 gererCollision();
         }
     }
+
+
 }
